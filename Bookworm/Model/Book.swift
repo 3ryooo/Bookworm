@@ -13,21 +13,17 @@ class Book {
     var genre: String
     var review: String
     var rating: Int
+    var createdAt: Date
     
-    init(title: String, author: String, genre: String, review: String, rating: Int) {
+    
+    init(title: String, author: String, genre: String, review: String, rating: Int, createdAt: Date) {
         self.title = title
         self.author = author
         self.genre = genre
         self.review = review
         self.rating = rating
+        self.createdAt = createdAt
     }
     
-    var hasValidBook: Bool {
-        if title.isEmpty || author.isEmpty || genre.isEmpty {
-            return false
-        }
-        
-        return true
-    }
     
 }

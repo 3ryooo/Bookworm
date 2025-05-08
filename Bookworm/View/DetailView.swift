@@ -39,6 +39,9 @@ struct DetailView: View {
             
             RatingView(rating: .constant(book.rating))
                 .font(.largeTitle)
+            
+            Text("\(dateFormat(book.createdAt))")
+                .padding()
 
         }
         .navigationTitle(book.title)
@@ -64,6 +67,16 @@ struct DetailView: View {
         modelContext.delete(book)
         dismiss()
     }
+    
+    func dateFormat(_ inportDate: Date) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let dateString = dateFormatter.string(from: inportDate)
+        
+        return "CreatedAt: \(dateString)"
+        
+    }
 
 }
 
@@ -71,7 +84,7 @@ struct DetailView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Book.self, configurations: config)
-        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it.", rating: 4)
+        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it.", rating: 4, createdAt: Date.now)
         
         return DetailView(book: example)
             .modelContainer(container)
