@@ -22,4 +22,12 @@ class Book {
         self.rating = rating
     }
     
+    var hasValidBook: Bool {
+        if title.isEmpty || author.isEmpty || genre.isEmpty {
+            return false
+        }
+        
+        return true
+    }
+    
 }
